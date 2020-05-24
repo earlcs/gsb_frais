@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 09 oct. 2019 à 06:09
--- Version du serveur :  5.7.26
--- Version de PHP :  7.2.18
+-- Généré le :  Dim 24 mai 2020 à 12:14
+-- Version du serveur :  10.4.10-MariaDB
+-- Version de PHP :  7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `comptable` (
 --
 
 INSERT INTO `comptable` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, `ville`, `dateEmbauche`) VALUES
-(1, 'CASIANO', 'Earl', 'ecasiano', 'test', NULL, NULL, NULL, NULL);
+(1, 'test', 'test', 'test', 'test', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -95,7 +95,12 @@ CREATE TABLE IF NOT EXISTS `fichefrais` (
 --
 
 INSERT INTO `fichefrais` (`idVisiteur`, `mois`, `nbJustificatifs`, `montantValide`, `dateModif`, `idEtat`) VALUES
-('a131', '201910', 0, '0.00', '2019-10-06', 'CR');
+('a131', '201910', 0, '2567.40', '2020-02-19', 'CL'),
+('a131', '202002', 0, '0.00', '2020-02-19', 'CL'),
+('a131', '202005', 3, '1505.90', '2020-05-23', 'VA'),
+('a17', '202005', 2, '1633.60', '2020-05-22', 'VA'),
+('a55', '202005', 1, '1684.00', '2020-05-23', 'RB'),
+('a93', '202005', 0, '1503.20', '2020-05-24', 'CL');
 
 -- --------------------------------------------------------
 
@@ -145,7 +150,27 @@ INSERT INTO `lignefraisforfait` (`idVisiteur`, `mois`, `idFraisForfait`, `quanti
 ('a131', '201910', 'ETP', 12),
 ('a131', '201910', 'KM', 920),
 ('a131', '201910', 'NUI', 3),
-('a131', '201910', 'REP', 5);
+('a131', '201910', 'REP', 5),
+('a131', '202002', 'ETP', 1),
+('a131', '202002', 'KM', 1),
+('a131', '202002', 'NUI', 1),
+('a131', '202002', 'REP', 1),
+('a131', '202005', 'ETP', 6),
+('a131', '202005', 'KM', 695),
+('a131', '202005', 'NUI', 3),
+('a131', '202005', 'REP', 4),
+('a17', '202005', 'ETP', 5),
+('a17', '202005', 'KM', 680),
+('a17', '202005', 'NUI', 4),
+('a17', '202005', 'REP', 8),
+('a55', '202005', 'ETP', 3),
+('a55', '202005', 'KM', 750),
+('a55', '202005', 'NUI', 8),
+('a55', '202005', 'REP', 8),
+('a93', '202005', 'ETP', 5),
+('a93', '202005', 'KM', 910),
+('a93', '202005', 'NUI', 2),
+('a93', '202005', 'REP', 4);
 
 -- --------------------------------------------------------
 
@@ -163,14 +188,20 @@ CREATE TABLE IF NOT EXISTS `lignefraishorsforfait` (
   `montant` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idVisiteur` (`idVisiteur`,`mois`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `lignefraishorsforfait`
 --
 
 INSERT INTO `lignefraishorsforfait` (`id`, `idVisiteur`, `mois`, `libelle`, `date`, `montant`) VALUES
-(1, 'a131', '201910', 'location salle de conférence', '2019-10-02', '312.00');
+(1, 'a131', '201910', 'location salle de conférence', '2019-10-02', '312.00'),
+(2, 'a131', '202002', 'location salle de conférence', '2020-01-07', '312.00'),
+(3, 'a17', '202005', 'location véhicule', '2020-02-09', '142.00'),
+(4, 'a131', '202005', 'invitation collaborateur', '2020-03-24', '75.00'),
+(5, 'a55', '202005', 'repas avec praticien', '2020-02-13', '49.00'),
+(6, 'a93', '202005', 'location salle de conférence', '2020-01-10', '75.00'),
+(8, 'a93', '202005', 'invitation collaborateur', '2020-02-17', '54.00');
 
 -- --------------------------------------------------------
 
