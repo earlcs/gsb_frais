@@ -7,14 +7,13 @@ $action = $_REQUEST['action'];
 $idVisiteur = $_SESSION['idVisiteur'];
 
 switch ($action) {
-    //sélectionner un visiteur et le mois
+    //sélectionner un visiteur et un mois
     //dont fiche de frais a été validé
     case 'selectionnerMoisVisiteur':{
 	$lesMois = $pdo->getLesMois();
 	include("vues/v_moisSuivie.php");
 	break;
     }
-    
     // afficher fiche de frais validé d'un visiteur
     case 'voirFrais':{
         $lesMois = $pdo->getLesMois();
@@ -35,16 +34,16 @@ switch ($action) {
         include("vues/v_etatValidation.php");
         break;
     }
-
+    //change l'état du fiche de frais validé (VA) en rembourser (RB)
     case 'rembourser': {
-
         $idVisit = $_REQUEST['idVisit'];
         $moisVisit = $_REQUEST['moisVisit'];
         $pdo->majEtatFicheFrais($idVisit, $moisVisit, "RB");
         if (!empty($idVisit) && !empty($moisVisit)) {
             ajouterErreur("La fiche est bien passé en état remboursé");
             $type=1;
-        } else {
+        } 
+        else {
             ajouterErreur("La fiche n'a pas été remboursé!");
         }
         include ("vues/v_erreurs.php");
