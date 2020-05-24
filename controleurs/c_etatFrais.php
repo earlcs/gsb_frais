@@ -12,9 +12,11 @@ switch($action){
 		$lesCles = array_keys( $lesMois );
 		$moisASelectionner = $lesCles[0];
 		include("vues/v_listeMois.php");
-		break;
+	break;
 	}
+	//affiche fiche de frais d'un mois sélectionné avec son état
 	case 'voirEtatFrais':{
+		//recupère le mois sélectionné
 		$leMois = $_REQUEST['lstMois']; 
 		$lesMois=$pdo->getLesMoisDisponibles($idVisiteur);
 		$moisASelectionner = $leMois;
