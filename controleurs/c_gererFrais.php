@@ -7,12 +7,14 @@ $numAnnee =substr( $mois,0,4);
 $numMois =substr( $mois,4,2);
 $action = $_REQUEST['action'];
 switch($action){
+	//créer une ligne de frais forfaitisé
 	case 'saisirFrais':{
 		if($pdo->estPremierFraisMois($idVisiteur,$mois)){
 			$pdo->creeNouvellesLignesFrais($idVisiteur,$mois);
 		}
 		break;
 	}
+
 	case 'validerMajFraisForfait':{
 		$lesFrais = $_REQUEST['lesFrais'];
 		if(lesQteFraisValides($lesFrais)){
@@ -24,6 +26,7 @@ switch($action){
 		}
 	  break;
 	}
+	//valider et créer fiche de frais
 	case 'validerCreationFrais':{
 		$dateFrais = $_REQUEST['dateFrais'];
 		$libelle = $_REQUEST['libelle'];
@@ -37,12 +40,14 @@ switch($action){
 		}
 		break;
 	}
+	//supprimer une ligne de frais hors forfait
 	case 'supprimerFrais':{
 		$idFrais = $_REQUEST['idFrais'];
                 $pdo->supprimerFraisHorsForfait($idFrais);
 		break;
 	}
 }
+//affiche les éléments forfaitisés et les frais hors forfait
 $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur,$mois);
 $lesFraisForfait= $pdo->getLesFraisForfait($idVisiteur,$mois);
 include("vues/v_listeFraisForfait.php");
