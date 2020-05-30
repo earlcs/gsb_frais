@@ -78,7 +78,7 @@ function getSixDernierMois() {
     for ($i = 6; $i > 0; $i--) {
         $mois = $mois - 1;
         if ($mois < 1) {
-            $annee = $mois - 1;
+            $annee = $annee - 1;
             $mois = 12;
         }
         if (strlen($mois) < 2) {
